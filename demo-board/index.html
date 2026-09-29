@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LoadLine · Search loads</title>
+<link rel="stylesheet" href="board.css">
+</head>
+<body>
+<!--
+  LoadLine is a stand-in for a real load board (DAT One, Truckstop). It is a
+  plain third-party page: it knows nothing about Class8. The Class8 Copilot
+  extension reads this table and adds its own UI on top.
+-->
+<header class="top">
+  <div class="brand">LoadLine</div>
+  <nav><a class="on" href="#">Search loads</a><a href="#">Search trucks</a><a href="#">Private network</a><a href="#">Tools</a></nav>
+  <div class="acct">Lone Star Carriers · MC 1048223</div>
+</header>
+<section class="search" aria-label="Search">
+  <label>Origin<input value="Dallas, TX" readonly></label>
+  <label>DH-O<input value="500 mi" readonly></label>
+  <label>Destination<input value="Anywhere" readonly></label>
+  <label>Equipment<input value="All" readonly></label>
+  <label>Pickup<input id="pickupRange" readonly></label>
+  <button id="refresh" type="button">Refresh results</button>
+</section>
+<main>
+  <p class="count"><span id="count"></span> results · sorted by age</p>
+  <table class="loads" id="loads">
+    <thead><tr>
+      <th>Age</th><th>Pickup</th><th>Equip</th><th>Origin</th><th>Destination</th><th>Trip</th>
+      <th>Length</th><th>Weight</th><th>Company</th><th>Contact</th><th>Rate</th>
+    </tr></thead>
+    <tbody></tbody>
+  </table>
+</main>
+<script src="loads.js"></script>
+<script src="board.js"></script>
+</body>
+</html>
