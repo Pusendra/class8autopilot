@@ -14,8 +14,8 @@ import { FitChip } from '../ui/FitChip';
 import css from '../ui/tokens.css?inline';
 
 export default defineContentScript({
-  // The demo board in dev and on GitHub Pages. Real boards get their own adapter.
-  matches: ['http://localhost/*', 'http://127.0.0.1/*', 'https://*.github.io/*'],
+  // The demo board locally and on GitHub Pages. Real boards get their own adapter.
+  matches: ['http://localhost/*', 'http://127.0.0.1/*', 'https://pusendra.github.io/class8autopilot/*'],
   runAt: 'document_idle',
   async main() {
     const adapter = findAdapter(new URL(location.href), document);

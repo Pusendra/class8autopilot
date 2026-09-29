@@ -1,14 +1,17 @@
 import { defineConfig } from 'wxt';
 
-// Where the demo load board lives. Local http-server in dev; override with
-// WXT_BOARD_URL once it is published to GitHub Pages.
-const BOARD_URL = process.env.WXT_BOARD_URL ?? 'http://localhost:5174/';
+// Where "Open demo load board" goes: the hosted board in builds, the local
+// http-server (npm run board) under `wxt dev`. WXT_BOARD_URL overrides both.
+const HOSTED_BOARD = 'https://pusendra.github.io/class8autopilot/';
+const LOCAL_BOARD = 'http://localhost:5174/';
 
 export default defineConfig({
   srcDir: 'src',
   modules: ['@wxt-dev/module-react'],
-  vite: () => ({
-    define: { __BOARD_URL__: JSON.stringify(BOARD_URL) },
+  vite: (env) => ({
+    define: {
+      __BOARD_URL__: JSON.stringify(process.env.WXT_BOARD_URL ?? (env.mode === 'development' ? LOCAL_BOARD : HOSTED_BOARD)),
+    },
   }),
   manifest: {
     name: 'Class8 Copilot',
