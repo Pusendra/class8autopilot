@@ -1,0 +1,43 @@
+{
+  "name": "class8-copilot",
+  "description": "Class8 Copilot — Class8's front door inside the load board",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "build": "wxt build",
+    "zip": "wxt zip",
+    "board": "http-server demo-board -p 5174 -c-1 --silent",
+    "test": "jest",
+    "e2e": "playwright test",
+    "typecheck": "tsc --noEmit",
+    "postinstall": "wxt prepare"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "0.129.0",
+    "@fontsource/anton": "5.3.0",
+    "@fontsource/sora": "5.3.0",
+    "lucide-react": "1.48.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.63.0",
+    "@types/chrome": "0.3.4",
+    "@types/jest": "30.0.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@wxt-dev/module-react": "1.2.2",
+    "autoprefixer": "10.6.1",
+    "http-server": "14.1.1",
+    "jest": "30.5.2",
+    "jest-environment-jsdom": "30.5.2",
+    "postcss": "8.5.28",
+    "tailwindcss": "3.4.19",
+    "ts-jest": "29.4.14",
+    "typescript": "5.9.3",
+    "wxt": "0.20.27"
+  }
+}
