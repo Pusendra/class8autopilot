@@ -1,5 +1,7 @@
 # Class8 Copilot
 
+[![CI](https://github.com/Pusendra/class8autopilot/actions/workflows/ci.yml/badge.svg)](https://github.com/Pusendra/class8autopilot/actions/workflows/ci.yml)
+
 **Class8's front door inside the load board.** Every load-board extension guesses. Class8 knows the truck.
 
 ![Class8 Copilot on a load board](docs/screenshots/board-sorted.png)
@@ -21,20 +23,24 @@ Class8 does. Its ELD is built into Volvo, Mack and Freightliner trucks. This ext
   <img src="docs/screenshots/panel-email.png" width="260" alt="Email draft">
 </p>
 
-## Try it (2 minutes)
+## Try it (1 minute)
+
+1. Download `class8-copilot-*-chrome.zip` from the [latest release](https://github.com/Pusendra/class8autopilot/releases/latest) and unzip it.
+2. In Chrome, open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked**, and pick the unzipped folder.
+3. Click the Class8 icon, then **Open demo load board**. This opens the [hosted demo board](https://pusendra.github.io/class8autopilot/).
+4. Click any load, or its verdict chip. The side panel opens. Try **Let Class8 call**, then **Approve and book**; the row on the board flips to *Booked*.
+5. Switch trucks in the navy bar. Aisha (50 minutes of driving left) and Tomasz (flatbed, ELD offline) see a very different board.
+
+For AI-written emails, open **Settings** and paste a Claude API key. Without one, the built-in draft is used.
+
+### From source
 
 ```bash
 npm install
-npm run build          # → .output/chrome-mv3
-npm run board          # demo load board on http://localhost:5174
+npm run build          # → .output/chrome-mv3 (Load unpacked this folder)
+npm run board          # optional: serve the demo board locally on :5174
+npm run dev            # or: live-reloading dev build that opens the local board
 ```
-
-1. In Chrome, open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked**, and pick `.output/chrome-mv3`.
-2. Click the Class8 icon, then **Open demo load board**.
-3. Click any load, or its verdict chip. The side panel opens. Try **Let Class8 call**, then **Approve and book**; the row on the board flips to *Booked*.
-4. Switch trucks in the navy bar. Aisha (50 minutes of driving left) and Tomasz (flatbed, ELD offline) see a very different board.
-
-For AI-written emails, open **Settings** and paste a Claude API key. Without one, the built-in draft is used.
 
 ## How it works
 
@@ -61,7 +67,7 @@ For AI-written emails, open **Settings** and paste a Claude API key. Without one
 - **`src/entrypoints/`**: built with WXT (Manifest V3). The content script renders React into shadow roots, so the board's CSS and ours never collide. The side panel, popup and options are React pages.
 - **Design**: Class8's own brand tokens (navy `#01031E`, purple `#5F48F5`, coral `#FD4747`, with Anton and Sora bundled locally). Status is always shown with an icon and text, never color alone. Focus is visible, everything works by keyboard, and reduced motion is respected.
 
-The demo board is a neutral stand-in named "LoadLine". Chrome doesn't let extensions inject into their own pages, so the board is a real third-party page that the content script reads.
+The demo board is a neutral stand-in named "LoadLine", hosted on GitHub Pages. Chrome doesn't let extensions inject into their own pages, so the board is a real third-party page that the content script reads. The content script is scoped to that one path and localhost.
 
 ## Tests
 
