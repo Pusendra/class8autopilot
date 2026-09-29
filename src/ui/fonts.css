@@ -1,0 +1,4 @@
+/* Extension pages (side panel, popup, options) load fonts normally. */
+@import '@fontsource/anton/400.css';
+@import '@fontsource/sora/400.css';
+@import '@fontsource/sora/600.css';

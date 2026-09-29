@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Class8 brand tokens, from class8.com's stylesheet. :host covers shadow roots. */
+:root,
+:host {
+  --c8-navy: #01031e;
+  --c8-purple: #5f48f5;
+  --c8-purple-dark: #4a35d6;
+  --c8-purple-light: #b092f8;
+  --c8-violet-tint: #e7defd;
+  --c8-coral: #fd4747;
+  --c8-coral-dark: #f31515;
+  /* Status colors, tuned for 4.5:1 text on their tints. */
+  --c8-good: #1f7a35;
+  --c8-good-bg: #e3f5e7;
+  --c8-warn: #8a5a00;
+  --c8-warn-bg: #fff1d6;
+  --c8-bad: #b42318;
+  --c8-bad-bg: #fde7e7;
+  --c8-ink: #01031e;
+  --c8-ink-soft: #4b4d63;
+  --c8-line: #e6e6ec;
+  --c8-wash: #f7f7fa;
+}
+
+:host {
+  all: initial;
+  font-family: Sora, system-ui, sans-serif;
+  color: var(--c8-ink);
+}
+
+@layer base {
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+  }
+  button {
+    @apply cursor-pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--c8-purple);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-white px-4 py-2.5 text-sm font-semibold text-ink transition-colors duration-150 hover:bg-wash;
+    min-height: 44px;
+  }
+  .btn-primary {
+    @apply border-purple bg-purple text-white hover:border-purple-dark hover:bg-purple-dark;
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs;
+    min-height: 32px;
+  }
+  .display {
+    @apply font-display uppercase;
+    letter-spacing: 0.02em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
