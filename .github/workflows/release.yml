@@ -1,0 +1,28 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run zip
+      - name: Publish release with the installable zip
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" .output/*-chrome.zip \
+            --title "Class8 Copilot $GITHUB_REF_NAME" \
+            --notes "Unzip, then load the folder in chrome://extensions (Developer mode → Load unpacked). Click the Class8 icon → Open demo load board."
